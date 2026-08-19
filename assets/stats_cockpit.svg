@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 120" width="850" height="120">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#101826" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#050912" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .val { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-weight: 900; font-size: 26px; }
+    .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; fill: #94A3B8; letter-spacing: 1px; }
+    .sub { font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10px; fill: #64748B; }
+  </style>
+
+  <!-- Card 1 -->
+  <g transform="translate(10, 10)">
+    <rect width="195" height="100" rx="18" fill="url(#cardGrad)" stroke="#10B981" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="18" y="28" class="lbl">CONTRIBUTIONS</text>
+    <text x="18" y="62" fill="#10B981" class="val">3,775+</text>
+    <text x="18" y="82" class="sub">Commits Jan – Present</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g transform="translate(220, 10)">
+    <rect width="195" height="100" rx="18" fill="url(#cardGrad)" stroke="#00F0FF" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="18" y="28" class="lbl">SHIPPED CODEBASES</text>
+    <text x="18" y="62" fill="#00F0FF" class="val">75+ Systems</text>
+    <text x="18" y="82" class="sub">Full-Stack &amp; Cloud Apps</text>
+  </g>
+
+  <!-- Card 3 -->
+  <g transform="translate(430, 10)">
+    <rect width="195" height="100" rx="18" fill="url(#cardGrad)" stroke="#A855F7" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="18" y="28" class="lbl">COMMIT VELOCITY</text>
+    <text x="18" y="62" fill="#C084FC" class="val">Top 1%</text>
+    <text x="18" y="82" class="sub">Global Engineering Pace</text>
+  </g>
+
+  <!-- Card 4 -->
+  <g transform="translate(640, 10)">
+    <rect width="200" height="100" rx="18" fill="url(#cardGrad)" stroke="#CCFF00" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="18" y="28" class="lbl">STATUS</text>
+    <circle cx="24" cy="54" r="5" fill="#CCFF00"/>
+    <text x="36" y="62" fill="#FFFFFF" class="val" font-size="20">Active Daily</text>
+    <text x="18" y="82" class="sub">Continuous Delivery CI/CD</text>
+  </g>
+</svg>
