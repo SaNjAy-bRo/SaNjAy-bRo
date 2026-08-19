@@ -36,6 +36,14 @@ interface SystemArchitect {
 
 ---
 
+### 💬 Verified Client Endorsement
+
+> ❝ **Huge thanks for crushing the recent release! Your clean code, fast problem-solving, and calm focus under pressure made all the difference. We are lucky to have your skill on the team.** ❞
+> 
+> — **Loka Shankaraha**, *Credit Consultant & Financial Advisory*
+
+---
+
 ### 🛠️ Technology Stack & Ecosystem
 
 <table>
