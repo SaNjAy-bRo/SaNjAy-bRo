@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250" role="img" aria-label="Yacht Club India">
+  <defs><clipPath id="wclip"><rect x="-80" y="0" width="160" height="80"/></clipPath></defs>
+  <style>
+    .sans { font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; }
+    .mono { font-family: 'JetBrains Mono','SFMono-Regular',Consolas,'Liberation Mono','DejaVu Sans Mono',Menlo,monospace; }
+    .serif { font-family: Georgia,'Iowan Old Style','Times New Roman','Liberation Serif',serif; }
+    
+    .bob { animation: bob 3.6s ease-in-out infinite; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .ping { transform-box: fill-box; transform-origin: center; animation: ping 2s ease-out infinite; }
+    @keyframes ping { from { transform: scale(1); opacity: .6; } to { transform: scale(2.8); opacity: 0; } }
+    .arrow { animation: arrow 2.6s ease-in-out infinite; }
+    @keyframes arrow { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,-3px); } }
+    .wave { animation: wave 2.4s linear infinite; } @keyframes wave { to { transform: translateX(-48px); } }.rock { transform-box: fill-box; transform-origin: center bottom; animation: rock 4s ease-in-out infinite; } @keyframes rock { 0%,100% { transform: rotate(-3deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-3px); } }
+    
+  </style>
+  <rect x="0.5" y="0.5" width="599" height="249" rx="16" fill="#12161e" stroke="#232a36"/>
+  <text x="32" y="44" class="mono" font-size="12" font-weight="700" letter-spacing="1.8" fill="#f5a524">06</text>
+  <text x="58" y="44" class="mono" font-size="12" letter-spacing="1.8" fill="#8b93a3">LUXURY MARITIME</text>
+  <text x="30" y="88" class="sans" font-size="29" font-weight="800" letter-spacing="-0.8" fill="#ece6da">Yacht Club India</text>
+  <text x="32" y="132" class="sans" font-size="16" fill="#c9c3b6">500+ luxury charters, a Goa route</text><text x="32" y="156" class="sans" font-size="16" fill="#c9c3b6">planner, 4.9★ CSAT.</text>
+  <line x1="32" x2="568" y1="196" y2="196" stroke="#232a36"/>
+  <text x="32" y="225" class="mono" font-size="11.5" letter-spacing="1.4" fill="#8b93a3">DJANGO · FASTAPI · FRAMER MOTION</text>
+  <g class="arrow"><text x="568" y="225" text-anchor="end" class="mono" font-size="12" font-weight="700" letter-spacing="1.6" fill="#ece6da">VISIT ↗</text></g>
+  <g transform="translate(500 34)">
+    <circle class="ping" cx="0" cy="0" r="3.5" fill="#6ee7a8"/><circle cx="0" cy="0" r="3.5" fill="#6ee7a8"/>
+    <text x="10" y="4.5" class="mono" font-size="11.5" font-weight="700" letter-spacing="1.6" fill="#6ee7a8">LIVE</text>
+  </g>
+  <g transform="translate(482 122)"><g transform="translate(0 12) scale(0.85)"><g class="rock"><line x1="6" y1="-16" x2="6" y2="-78" stroke="#c9c3b6" stroke-width="2.5"/><path class="sail" d="M10,-74 L10,-22 L52,-22 Z" fill="#f5a524"/><path d="M6,-78 L-10,-73 L6,-68 Z" fill="#ff5d5d"/><rect x="-30" y="-16" width="50" height="16" fill="#262632"/><rect x="-24" y="-12" width="10" height="7" fill="#0f1218"/><rect x="-8" y="-12" width="10" height="7" fill="#0f1218"/><path d="M-62,6 L62,6 L56,0 L-56,0 Z" fill="#2b3242"/><path d="M-62,6 L62,6 L46,30 L-50,30 Z" fill="#191e29"/></g></g><g clip-path="url(#wclip)"><path class="wave" style="animation-delay:-0.0s" d="M-120,38 q12,-6 24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0" fill="none" stroke="#f5a524" stroke-width="2" stroke-linecap="round" opacity="0.9"/><path class="wave" style="animation-delay:-0.8s" d="M-120,48 q12,-6 24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0" fill="none" stroke="#566072" stroke-width="2" stroke-linecap="round" opacity="0.6"/><path class="wave" style="animation-delay:-1.6s" d="M-120,58 q12,-6 24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0 t24,0" fill="none" stroke="#566072" stroke-width="2" stroke-linecap="round" opacity="0.3"/></g></g>
+</svg>

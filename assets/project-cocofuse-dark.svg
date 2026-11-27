@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250" role="img" aria-label="COCO FUSE">
+  <defs><clipPath id="wclip"><rect x="-80" y="0" width="160" height="80"/></clipPath></defs>
+  <style>
+    .sans { font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; }
+    .mono { font-family: 'JetBrains Mono','SFMono-Regular',Consolas,'Liberation Mono','DejaVu Sans Mono',Menlo,monospace; }
+    .serif { font-family: Georgia,'Iowan Old Style','Times New Roman','Liberation Serif',serif; }
+    
+    .bob { animation: bob 3.6s ease-in-out infinite; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .ping { transform-box: fill-box; transform-origin: center; animation: ping 2s ease-out infinite; }
+    @keyframes ping { from { transform: scale(1); opacity: .6; } to { transform: scale(2.8); opacity: 0; } }
+    .arrow { animation: arrow 2.6s ease-in-out infinite; }
+    @keyframes arrow { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,-3px); } }
+    .bub { animation: bub 2.8s ease-in infinite; } @keyframes bub { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-44px); opacity: 0; } }
+    
+  </style>
+  <rect x="0.5" y="0.5" width="599" height="249" rx="16" fill="#12161e" stroke="#232a36"/>
+  <text x="32" y="44" class="mono" font-size="12" font-weight="700" letter-spacing="1.8" fill="#f5a524">04</text>
+  <text x="58" y="44" class="mono" font-size="12" letter-spacing="1.8" fill="#8b93a3">D2C 3D COMMERCE</text>
+  <text x="30" y="88" class="sans" font-size="29" font-weight="800" letter-spacing="-0.8" fill="#ece6da">COCO FUSE</text>
+  <text x="32" y="132" class="sans" font-size="16" fill="#c9c3b6">3-flavor liquid visualizer, 2.4x cart</text><text x="32" y="156" class="sans" font-size="16" fill="#c9c3b6">uplift, 60 FPS.</text>
+  <line x1="32" x2="568" y1="196" y2="196" stroke="#232a36"/>
+  <text x="32" y="225" class="mono" font-size="11.5" letter-spacing="1.4" fill="#8b93a3">REACT 19 · SHOPIFY · GLSL</text>
+  <g class="arrow"><text x="568" y="225" text-anchor="end" class="mono" font-size="12" font-weight="700" letter-spacing="1.6" fill="#ece6da">VISIT ↗</text></g>
+  <g transform="translate(500 34)">
+    <circle class="ping" cx="0" cy="0" r="3.5" fill="#6ee7a8"/><circle cx="0" cy="0" r="3.5" fill="#6ee7a8"/>
+    <text x="10" y="4.5" class="mono" font-size="11.5" font-weight="700" letter-spacing="1.6" fill="#6ee7a8">LIVE</text>
+  </g>
+  <g transform="translate(482 122)"><path d="M-25.7,-61.6 L-25.7,0.0 A25.7,14.8 0 0 0 25.7,0.0 L25.7,-61.6 Z" fill="#1c282b"/><ellipse cx="0.0" cy="-61.6" rx="25.7" ry="14.8" fill="#243236"/><path d="M-25.7,-40.6 L-25.7,-21.0 A25.7,14.8 0 0 0 25.7,-21.0 L25.7,-40.6 A25.7,14.8 0 0 1 -25.7,-40.6 Z" fill="#f5a524"/><ellipse cx="0.0" cy="-61.6" rx="18.0" ry="10.4" fill="none" stroke="#566072"/><circle class="bub" style="animation-delay:0.0s" cx="-14.0" cy="-67.6" r="2.5" fill="none" stroke="#f5a524" stroke-width="1.5"/><circle class="bub" style="animation-delay:0.7s" cx="-2.0" cy="-67.6" r="3.5" fill="none" stroke="#f5a524" stroke-width="1.5"/><circle class="bub" style="animation-delay:1.4s" cx="10.0" cy="-67.6" r="2.5" fill="none" stroke="#f5a524" stroke-width="1.5"/><circle class="bub" style="animation-delay:2.1s" cx="22.0" cy="-67.6" r="3.5" fill="none" stroke="#f5a524" stroke-width="1.5"/></g>
+</svg>

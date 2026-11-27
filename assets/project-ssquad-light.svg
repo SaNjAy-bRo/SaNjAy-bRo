@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250" role="img" aria-label="SSquad Global">
+  <defs><clipPath id="wclip"><rect x="-80" y="0" width="160" height="80"/></clipPath></defs>
+  <style>
+    .sans { font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; }
+    .mono { font-family: 'JetBrains Mono','SFMono-Regular',Consolas,'Liberation Mono','DejaVu Sans Mono',Menlo,monospace; }
+    .serif { font-family: Georgia,'Iowan Old Style','Times New Roman','Liberation Serif',serif; }
+    
+    .bob { animation: bob 3.6s ease-in-out infinite; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .ping { transform-box: fill-box; transform-origin: center; animation: ping 2s ease-out infinite; }
+    @keyframes ping { from { transform: scale(1); opacity: .6; } to { transform: scale(2.8); opacity: 0; } }
+    .arrow { animation: arrow 2.6s ease-in-out infinite; }
+    @keyframes arrow { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,-3px); } }
+    .sweep { transform-origin: 0 0; animation: sw 3.6s linear infinite; } @keyframes sw { to { transform: rotate(360deg); } }.blip { animation: blip 3.6s ease-out infinite; } @keyframes blip { 0%,100% { opacity: 0; } 10% { opacity: 1; } 60% { opacity: 0; } }
+    
+  </style>
+  <rect x="0.5" y="0.5" width="599" height="249" rx="16" fill="#fffdf9" stroke="#e5dfd2"/>
+  <text x="32" y="44" class="mono" font-size="12" font-weight="700" letter-spacing="1.8" fill="#e0791b">05</text>
+  <text x="58" y="44" class="mono" font-size="12" letter-spacing="1.8" fill="#6f6a60">ENTERPRISE DEFENSE</text>
+  <text x="30" y="88" class="sans" font-size="29" font-weight="800" letter-spacing="-0.8" fill="#1b1915">SSquad Global</text>
+  <text x="32" y="132" class="sans" font-size="16" fill="#3b3730">Real-time threat HUD, sub-12ms</text><text x="32" y="156" class="sans" font-size="16" fill="#3b3730">telemetry, zero-trust SOC2.</text>
+  <line x1="32" x2="568" y1="196" y2="196" stroke="#e5dfd2"/>
+  <text x="32" y="225" class="mono" font-size="11.5" letter-spacing="1.4" fill="#6f6a60">REACT 19 · TYPESCRIPT · CLOUD</text>
+  <g class="arrow"><text x="568" y="225" text-anchor="end" class="mono" font-size="12" font-weight="700" letter-spacing="1.6" fill="#1b1915">VISIT ↗</text></g>
+  <g transform="translate(500 34)">
+    <circle class="ping" cx="0" cy="0" r="3.5" fill="#2f9e66"/><circle cx="0" cy="0" r="3.5" fill="#2f9e66"/>
+    <text x="10" y="4.5" class="mono" font-size="11.5" font-weight="700" letter-spacing="1.6" fill="#2f9e66">LIVE</text>
+  </g>
+  <g transform="translate(482 122)"><polygon points="63.0,0.0 0.0,36.4 0.0,29.4 63.0,-7.0" fill="#aebccf" /><polygon points="-63.0,0.0 0.0,36.4 0.0,29.4 -63.0,-7.0" fill="#c9d3e0" /><polygon points="0.0,-43.4 63.0,-7.0 0.0,29.4 -63.0,-7.0" fill="#e4e9f0" /><g transform="translate(0.0 -7.0) scale(1 0.577) rotate(45)"><circle r="20" fill="none" stroke="#e0791b" stroke-opacity="0.40" stroke-width="1.5"/><circle r="38" fill="none" stroke="#e0791b" stroke-opacity="0.31" stroke-width="1.5"/><circle r="54" fill="none" stroke="#e0791b" stroke-opacity="0.23" stroke-width="1.5"/><g class="sweep"><path d="M0,0 L54,0 A54,54 0 0 0 38.2,-38.2 Z" fill="#e0791b" opacity="0.35"/><line x1="0" y1="0" x2="54" y2="0" stroke="#e0791b" stroke-width="2"/></g><circle class="blip" style="animation-delay:0.3s" cx="24" cy="-30" r="3.5" fill="#d9433b"/><circle class="blip" style="animation-delay:1.6s" cx="-34" cy="14" r="3.5" fill="#d9433b"/><circle class="blip" style="animation-delay:2.6s" cx="12" cy="40" r="3.5" fill="#d9433b"/></g></g>
+</svg>

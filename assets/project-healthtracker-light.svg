@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250" role="img" aria-label="HealthTracker">
+  <defs><clipPath id="wclip"><rect x="-80" y="0" width="160" height="80"/></clipPath></defs>
+  <style>
+    .sans { font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; }
+    .mono { font-family: 'JetBrains Mono','SFMono-Regular',Consolas,'Liberation Mono','DejaVu Sans Mono',Menlo,monospace; }
+    .serif { font-family: Georgia,'Iowan Old Style','Times New Roman','Liberation Serif',serif; }
+    
+    .bob { animation: bob 3.6s ease-in-out infinite; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .ping { transform-box: fill-box; transform-origin: center; animation: ping 2s ease-out infinite; }
+    @keyframes ping { from { transform: scale(1); opacity: .6; } to { transform: scale(2.8); opacity: 0; } }
+    .arrow { animation: arrow 2.6s ease-in-out infinite; }
+    @keyframes arrow { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,-3px); } }
+    .ecg { stroke-dasharray: 100; animation: ecg 2.4s linear infinite; }@keyframes ecg { from { stroke-dashoffset: 100; } 70%,to { stroke-dashoffset: 0; } }
+    
+  </style>
+  <rect x="0.5" y="0.5" width="599" height="249" rx="16" fill="#fffdf9" stroke="#e5dfd2"/>
+  <text x="32" y="44" class="mono" font-size="12" font-weight="700" letter-spacing="1.8" fill="#e0791b">01</text>
+  <text x="58" y="44" class="mono" font-size="12" letter-spacing="1.8" fill="#6f6a60">HEALTHCARE · MOBILE</text>
+  <text x="30" y="88" class="sans" font-size="29" font-weight="800" letter-spacing="-0.8" fill="#1b1915">HealthTracker</text>
+  <text x="32" y="132" class="sans" font-size="16" fill="#3b3730">An app for doctors, with patient records,</text><text x="32" y="156" class="sans" font-size="16" fill="#3b3730">PDF reports and an AI assistant.</text>
+  <line x1="32" x2="568" y1="196" y2="196" stroke="#e5dfd2"/>
+  <text x="32" y="225" class="mono" font-size="11.5" letter-spacing="1.4" fill="#6f6a60">REACT NATIVE · EXPO · TYPESCRIPT</text>
+  <g class="arrow"><text x="568" y="225" text-anchor="end" class="mono" font-size="12" font-weight="700" letter-spacing="1.6" fill="#1b1915">REPO ↗</text></g>
+  <g transform="translate(500 34)">
+    <circle class="ping" cx="0" cy="0" r="3.5" fill="#e0791b"/><circle cx="0" cy="0" r="3.5" fill="#e0791b"/>
+    <text x="10" y="4.5" class="mono" font-size="11.5" font-weight="700" letter-spacing="1.6" fill="#e0791b">NEW</text>
+  </g>
+  <g transform="translate(482 122)"><polygon points="19.4,8.4 14.1,11.5 14.1,-52.9 19.4,-56.0" fill="#24221d" /><polygon points="-17.5,-6.7 14.1,11.5 14.1,-52.9 -17.5,-71.1" fill="#2f2c26" /><polygon points="-12.1,-74.2 19.4,-56.0 14.1,-52.9 -17.5,-71.1" fill="#38342d" /><polygon points="-15.2,-10.9 11.5,4.5 11.5,-48.7 -15.2,-64.1" fill="#f7f4ee" /><polyline class="ecg" points="-13.8,-35.4 -6.5,-31.2 -4.1,-41.0 -1.7,-18.6 0.7,-31.2 2.4,-26.0 10.4,-21.4" fill="none" stroke="#e0791b" stroke-width="2" stroke-linejoin="round" pathLength="100"/><g class="bob"><rect x="6.4" y="-46.6" width="26" height="26" rx="6" fill="#d9433b"/><rect x="16.9" y="-41.6" width="5" height="16" fill="#fff"/><rect x="11.4" y="-36.1" width="16" height="5" fill="#fff"/></g></g>
+</svg>

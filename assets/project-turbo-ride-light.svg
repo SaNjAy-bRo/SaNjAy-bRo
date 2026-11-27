@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250" role="img" aria-label="Turbo Ride Supercars">
+  <defs><clipPath id="wclip"><rect x="-80" y="0" width="160" height="80"/></clipPath></defs>
+  <style>
+    .sans { font-family: 'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif; }
+    .mono { font-family: 'JetBrains Mono','SFMono-Regular',Consolas,'Liberation Mono','DejaVu Sans Mono',Menlo,monospace; }
+    .serif { font-family: Georgia,'Iowan Old Style','Times New Roman','Liberation Serif',serif; }
+    
+    .bob { animation: bob 3.6s ease-in-out infinite; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .ping { transform-box: fill-box; transform-origin: center; animation: ping 2s ease-out infinite; }
+    @keyframes ping { from { transform: scale(1); opacity: .6; } to { transform: scale(2.8); opacity: 0; } }
+    .arrow { animation: arrow 2.6s ease-in-out infinite; }
+    @keyframes arrow { 0%,100% { transform: translate(0,0); } 50% { transform: translate(3px,-3px); } }
+    .spd { animation: spd 1s linear infinite; } @keyframes spd { 0% { transform: translate(14px,8px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translate(-20px,-12px); opacity: 0; } }.blink { animation: blink 2s steps(1) infinite; } @keyframes blink { 50% { opacity: .3; } }
+    
+  </style>
+  <rect x="0.5" y="0.5" width="599" height="249" rx="16" fill="#fffdf9" stroke="#e5dfd2"/>
+  <text x="32" y="44" class="mono" font-size="12" font-weight="700" letter-spacing="1.8" fill="#e0791b">03</text>
+  <text x="58" y="44" class="mono" font-size="12" letter-spacing="1.8" fill="#6f6a60">LUXURY MOBILITY</text>
+  <text x="30" y="88" class="sans" font-size="29" font-weight="800" letter-spacing="-0.8" fill="#1b1915">Turbo Ride Supercars</text>
+  <text x="32" y="132" class="sans" font-size="16" fill="#3b3730">+185% bookings lift, sub-second</text><text x="32" y="156" class="sans" font-size="16" fill="#3b3730">checkout, 0.000 CLS.</text>
+  <line x1="32" x2="568" y1="196" y2="196" stroke="#e5dfd2"/>
+  <text x="32" y="225" class="mono" font-size="11.5" letter-spacing="1.4" fill="#6f6a60">NEXT.JS 15 · STRIPE · DJANGO</text>
+  <g class="arrow"><text x="568" y="225" text-anchor="end" class="mono" font-size="12" font-weight="700" letter-spacing="1.6" fill="#1b1915">VISIT ↗</text></g>
+  <g transform="translate(500 34)">
+    <circle class="ping" cx="0" cy="0" r="3.5" fill="#2f9e66"/><circle cx="0" cy="0" r="3.5" fill="#2f9e66"/>
+    <text x="10" y="4.5" class="mono" font-size="11.5" font-weight="700" letter-spacing="1.6" fill="#2f9e66">LIVE</text>
+  </g>
+  <g transform="translate(482 122)"><line class="spd" style="animation-delay:0.00s" x1="-120" y1="-14" x2="-80" y2="9" stroke="#a59f93" stroke-width="2" stroke-linecap="round"/><line class="spd" style="animation-delay:0.25s" x1="-114" y1="0" x2="-74" y2="23" stroke="#a59f93" stroke-width="2" stroke-linecap="round"/><line class="spd" style="animation-delay:0.50s" x1="-108" y1="14" x2="-68" y2="37" stroke="#a59f93" stroke-width="2" stroke-linecap="round"/><g class="bob"><polygon points="47.3,6.9 20.6,22.3 20.6,10.5 47.3,-4.9" fill="#8a4b10" /><polygon points="-47.3,-16.9 20.6,22.3 20.6,10.5 -47.3,-28.7" fill="#b36015" /><polygon points="-20.6,-44.1 47.3,-4.9 20.6,10.5 -47.3,-28.7" fill="#e0791b" /><polygon points="26.7,-14.0 4.8,-1.4 4.8,-11.5 26.7,-24.1" fill="#13151a" /><polygon points="-24.2,-18.2 4.8,-1.4 4.8,-11.5 -24.2,-28.3" fill="#1a1d24" /><polygon points="-2.4,-40.9 26.7,-24.1 4.8,-11.5 -24.2,-28.3" fill="#ed801c" /><ellipse cx="-34.2" cy="-9.7" rx="9" ry="11" fill="#14161b"/><ellipse cx="-34.2" cy="-9.7" rx="3.5" ry="4.5" fill="#a59f93"/><ellipse cx="7.0" cy="14.1" rx="9" ry="11" fill="#14161b"/><ellipse cx="7.0" cy="14.1" rx="3.5" ry="4.5" fill="#a59f93"/><circle class="blink" cx="26.7" cy="12.0" r="3" fill="#f0a24f"/></g></g>
+</svg>
