@@ -15,13 +15,13 @@ const OUT = process.env.OUT_DIR || "dist";
 const TOKEN = process.env.GITHUB_TOKEN;
 
 const SANS = "'Inter','Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif";
-const MONO = "'JetBrains Mono','Fira Code','SFMono-Regular',Consolas,'DejaVu Sans Mono',Menlo,monospace";
+const MONO = "'JetBrains Mono','SFMono-Regular',Consolas,'Liberation Mono','DejaVu Sans Mono',Menlo,monospace";
 
 const THEMES = {
-  dark: { bg0: "#0c0b1d", bg1: "#07070f", text: "#f5f7ff", muted: "#9aa4c7", faint: "#2a2848",
-          cyan: "#22d3ee", violet: "#a78bfa", pink: "#f472b6", green: "#34d399", amber: "#fbbf24", tile: "#ffffff", tileOp: 0.04 },
-  light: { bg0: "#ffffff", bg1: "#f5f3ff", text: "#0f172a", muted: "#475569", faint: "#e4e1f5",
-           cyan: "#0891b2", violet: "#7c3aed", pink: "#db2777", green: "#059669", amber: "#d97706", tile: "#7c3aed", tileOp: 0.05 },
+  dark: { card: "#12161e", line: "#232a36", line2: "#2e3644", ink: "#ece6da", ink2: "#c9c3b6", muted: "#8b93a3", faint: "#566072",
+          accent: "#f5a524", green: "#6ee7a8", langs: ["#f5a524", "#e8e2d6", "#9aa3b2", "#c4734f", "#7fa7a0", "#5f6b7e"] },
+  light: { card: "#fffdf9", line: "#e5dfd2", line2: "#d9d1c1", ink: "#1b1915", ink2: "#3b3730", muted: "#6f6a60", faint: "#a59f93",
+           accent: "#e0791b", green: "#2f9e66", langs: ["#e0791b", "#1b1915", "#6f6a60", "#b4532d", "#4f8278", "#a9a294"] },
 };
 
 const LANG_FRAGMENT = `nodes { isFork languages(first: 10, orderBy: {field: SIZE, direction: DESC}) { edges { size node { name color } } } }`;
@@ -97,6 +97,7 @@ function summarise({ user, orgRepos }) {
   const activeDays = days.filter((d) => d.contributionCount > 0).length;
 
   const weekly = cal.weeks.map((w) => w.contributionDays.reduce((a, d) => a + d.contributionCount, 0)).slice(-52);
+  const weekStarts = cal.weeks.map((w) => w.contributionDays[0]?.date).slice(-52);
 
   const langMap = new Map();
   for (const repos of [user.repositories, orgRepos]) {
@@ -114,7 +115,7 @@ function summarise({ user, orgRepos }) {
     .map(([name, l]) => ({ name, color: l.color, pct: (l.size / totalSize) * 100 }));
 
   return {
-    total: cal.totalContributions, current, longest, activeDays, weekly, langs,
+    total: cal.totalContributions, current, longest, activeDays, weekly, weekStarts, langs,
     repos: (user.repositories?.totalCount ?? 0) + (orgRepos?.totalCount ?? 0),
   };
 }
@@ -124,80 +125,90 @@ const fmt = (n) => n.toLocaleString("en-IN");
 
 function card(s, theme) {
   const c = THEMES[theme];
-  const W = 1200, H = 470;
-  const tiles = [
-    { label: "CONTRIBUTIONS", value: fmt(s.total), sub: "in the last 12 months", col: c.cyan },
-    { label: "CURRENT STREAK", value: `${s.current} day${s.current === 1 ? "" : "s"}`, sub: "and counting", col: c.green },
-    { label: "LONGEST STREAK", value: `${s.longest} days`, sub: "in the last 12 months", col: c.violet },
-    { label: "PUBLIC REPOS", value: fmt(s.repos), sub: ORG ? `mine + @${ORG}` : "on GitHub", col: c.pink },
+  const W = 1200, H = 500, P = 36;
+  const stats = [
+    { label: "CONTRIBUTIONS", value: fmt(s.total), sub: "last 12 months" },
+    { label: "CURRENT STREAK", value: `${s.current}`, unit: s.current === 1 ? "day" : "days", sub: "and counting", live: true },
+    { label: "LONGEST STREAK", value: `${s.longest}`, unit: "days", sub: "last 12 months" },
+    { label: "PUBLIC REPOS", value: fmt(s.repos), sub: ORG ? `mine + @${ORG}` : "on GitHub" },
   ];
-  const tw = 265, gap = 18, tx0 = 34;
-  const tileSvg = tiles.map((t, i) => {
-    const x = tx0 + i * (tw + gap);
-    return `<g class="up" style="animation-delay:${(i * 0.12).toFixed(2)}s">
-      <rect x="${x}" y="30" width="${tw}" height="118" rx="18" fill="${c.tile}" fill-opacity="${c.tileOp}" stroke="${t.col}" stroke-opacity="0.35"/>
-      <rect x="${x}" y="30" width="4" height="118" rx="2" fill="${t.col}"/>
-      <text x="${x + 24}" y="62" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="${c.muted}">${t.label}</text>
-      <text x="${x + 22}" y="108" class="sans" font-size="38" font-weight="800" fill="${t.col}">${esc(t.value)}</text>
-      <text x="${x + 24}" y="132" class="sans" font-size="13" fill="${c.muted}">${esc(t.sub)}</text>
+  const colw = (W - 2 * P) / 4;
+  const statSvg = stats.map((t, i) => {
+    const x = P + i * colw + (i ? 28 : 0);
+    const valW = t.value.length * 30;
+    return `<g class="up" style="animation-delay:${(i * 0.1).toFixed(2)}s">
+      ${i ? `<line x1="${P + i * colw}" x2="${P + i * colw}" y1="${P}" y2="${P + 118}" stroke="${c.line}"/>` : ""}
+      <text x="${x}" y="${P + 14}" class="mono" font-size="12" letter-spacing="2" fill="${c.muted}"><tspan fill="${c.accent}" font-weight="700">${String(i + 1).padStart(2, "0")}</tspan>  ${t.label}</text>
+      <text x="${x - 2}" y="${P + 78}" class="sans" font-size="54" font-weight="800" letter-spacing="-2" fill="${c.ink}">${esc(t.value)}${t.unit ? `<tspan class="sans" font-size="20" font-weight="600" letter-spacing="0" fill="${c.muted}" dx="8">${t.unit}</tspan>` : ""}</text>
+      ${t.live ? `<circle class="ping" cx="${x + 4}" cy="${P + 104}" r="3.5" fill="${c.green}"/><circle cx="${x + 4}" cy="${P + 104}" r="3.5" fill="${c.green}"/>` : ""}
+      <text x="${x + (t.live ? 16 : 0)}" y="${P + 108}" class="mono" font-size="12" letter-spacing="1.4" fill="${c.faint}">${esc(t.sub.toUpperCase())}</text>
     </g>`;
   }).join("");
 
-  // Weekly activity bars
-  const bx = 34, by = 196, bw = W - 68, bh = 120;
+  // Weekly activity
+  const bx = P, by = 214, bw = W - 2 * P, bh = 120;
   const max = Math.max(1, ...s.weekly);
   const step = bw / s.weekly.length;
   const bars = s.weekly.map((v, i) => {
-    const h = Math.max(3, (v / max) * bh);
-    const x = bx + i * step + 2;
-    return `<rect class="bar" style="animation-delay:${(i * 0.018).toFixed(3)}s" x="${x.toFixed(1)}" y="${(by + bh - h).toFixed(1)}" width="${(step - 4).toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="url(#barG)"/>`;
+    const h = Math.max(2, (v / max) * bh);
+    const x = bx + i * step + 3;
+    const hot = v === max;
+    return `<rect class="bar" style="animation-delay:${(i * 0.015).toFixed(3)}s" x="${x.toFixed(1)}" y="${(by + bh - h).toFixed(1)}" width="${(step - 6).toFixed(1)}" height="${h.toFixed(1)}" fill="${hot ? c.accent : c.ink}" fill-opacity="${hot ? 1 : (0.18 + 0.6 * (v / max)).toFixed(2)}"/>`;
   }).join("");
+  // month ticks
+  const months = [];
+  const days = s.weekStarts;
+  let last = "";
+  days.forEach((d, i) => {
+    const m = new Date(d + "T00:00:00Z").toLocaleString("en-US", { month: "short", timeZone: "UTC" }).toUpperCase();
+    if (m !== last) {
+      if (last) months.push(`<text x="${(bx + i * step + 3).toFixed(1)}" y="${by + bh + 22}" class="mono" font-size="10.5" letter-spacing="1.2" fill="${c.faint}">${m}</text>`);
+      last = m;
+    }
+  });
 
   // Languages
-  const ly = 382;
+  const ly = 412;
   let lx = bx;
   const segs = s.langs.map((l, i) => {
     const w = (l.pct / 100) * bw;
-    const seg = `<rect x="${lx.toFixed(1)}" y="${ly}" width="${Math.max(w - 3, 2).toFixed(1)}" height="12" rx="6" fill="${l.color}"/>`;
+    const seg = `<rect x="${lx.toFixed(1)}" y="${ly}" width="${Math.max(w - 3, 2).toFixed(1)}" height="10" fill="${c.langs[i % c.langs.length]}"/>`;
     lx += w;
     return seg;
   }).join("");
   const legend = s.langs.map((l, i) => {
     const x = bx + i * (bw / Math.max(s.langs.length, 1));
-    return `<circle cx="${(x + 6).toFixed(1)}" cy="${ly + 42}" r="6" fill="${l.color}"/>
-      <text x="${(x + 18).toFixed(1)}" y="${ly + 47}" class="sans" font-size="14" font-weight="600" fill="${c.text}">${esc(l.name)}</text>
-      <text x="${(x + 18 + l.name.length * 9.6 + 10).toFixed(1)}" y="${ly + 47}" class="mono" font-size="13" fill="${c.muted}">${l.pct.toFixed(1)}%</text>`;
+    return `<rect x="${x.toFixed(1)}" y="${ly + 30}" width="10" height="10" fill="${c.langs[i % c.langs.length]}"/>
+      <text x="${(x + 18).toFixed(1)}" y="${ly + 40}" class="sans" font-size="15" font-weight="600" fill="${c.ink}">${esc(l.name)}</text>
+      <text x="${(x + 18 + l.name.length * 9 + 10).toFixed(1)}" y="${ly + 40}" class="mono" font-size="12.5" fill="${c.muted}">${l.pct.toFixed(1)}%</text>`;
   }).join("");
 
-  const updated = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kolkata" });
+  const updated = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kolkata" }).toUpperCase();
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="GitHub stats: ${fmt(s.total)} contributions in the last year, ${s.current}-day current streak, ${s.longest}-day longest streak, ${s.repos} public repositories">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c.bg0}"/><stop offset="1" stop-color="${c.bg1}"/></linearGradient>
-    <linearGradient id="barG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${c.violet}"/><stop offset="1" stop-color="${c.cyan}"/></linearGradient>
-    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c.cyan}"/><stop offset="0.5" stop-color="${c.violet}"/><stop offset="1" stop-color="${c.pink}"/></linearGradient>
-    <clipPath id="cl"><rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="24"/></clipPath>
-  </defs>
   <style>
     .sans { font-family: ${SANS}; }
     .mono { font-family: ${MONO}; }
     .up { animation: up .9s cubic-bezier(.2,.8,.2,1) both; }
-    @keyframes up { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
-    .bar { transform-box: fill-box; transform-origin: bottom; animation: grow 1.2s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes up { from { transform: translateY(10px); opacity: 0; } to { transform: none; opacity: 1; } }
+    .bar { transform-box: fill-box; transform-origin: bottom; animation: grow 1.1s cubic-bezier(.2,.8,.2,1) both; }
     @keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-    .lang { animation: reveal 1.6s cubic-bezier(.2,.8,.2,1) .4s both; }
+    .lang { animation: reveal 1.6s cubic-bezier(.2,.8,.2,1) .3s both; }
     @keyframes reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+    .ping { transform-box: fill-box; transform-origin: center; animation: ping 2s ease-out infinite; }
+    @keyframes ping { from { transform: scale(1); opacity: .6; } to { transform: scale(2.8); opacity: 0; } }
   </style>
-  <g clip-path="url(#cl)"><rect width="${W}" height="${H}" fill="url(#bg)"/></g>
-  <rect x="1" y="1" width="${W - 2}" height="${H - 2}" rx="24" fill="none" stroke="url(#edge)" stroke-opacity="0.45"/>
-  ${tileSvg}
-  <text x="${bx}" y="182" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="${c.muted}">WEEKLY ACTIVITY · LAST 52 WEEKS</text>
-  <text x="${W - 34}" y="182" text-anchor="end" class="mono" font-size="12" fill="${c.muted}">${s.activeDays} active days</text>
-  <line x1="${bx}" x2="${bx + bw}" y1="${by + bh + 0.5}" y2="${by + bh + 0.5}" stroke="${c.faint}"/>
+  <rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="16" fill="${c.card}" stroke="${c.line}"/>
+  ${statSvg}
+  <line x1="${P}" x2="${W - P}" y1="172" y2="172" stroke="${c.line}"/>
+  <text x="${bx}" y="200" class="mono" font-size="12" letter-spacing="2" fill="${c.muted}">WEEKLY ACTIVITY · LAST 52 WEEKS</text>
+  <text x="${W - P}" y="200" text-anchor="end" class="mono" font-size="12" letter-spacing="1.4" fill="${c.muted}">${s.activeDays} ACTIVE DAYS</text>
   ${bars}
-  <text x="${bx}" y="${ly - 14}" class="mono" font-size="12" font-weight="700" letter-spacing="2" fill="${c.muted}">TOP LANGUAGES · PUBLIC REPOS</text>
-  <text x="${W - 34}" y="${ly - 14}" text-anchor="end" class="mono" font-size="12" fill="${c.muted}">updated ${updated}</text>
-  <rect x="${bx}" y="${ly}" width="${bw}" height="12" rx="6" fill="${c.faint}"/>
+  <line x1="${bx}" x2="${bx + bw}" y1="${by + bh + 0.5}" y2="${by + bh + 0.5}" stroke="${c.line2}"/>
+  ${months.join("")}
+  <text x="${bx}" y="${ly - 16}" class="mono" font-size="12" letter-spacing="2" fill="${c.muted}">TOP LANGUAGES · PUBLIC REPOS</text>
+  <text x="${W - P}" y="${ly - 16}" text-anchor="end" class="mono" font-size="11" letter-spacing="1.4" fill="${c.faint}">UPDATED ${updated}</text>
+  <rect x="${bx}" y="${ly}" width="${bw}" height="10" fill="${c.line}"/>
   <g class="lang">${segs}</g>
   ${legend}
 </svg>
